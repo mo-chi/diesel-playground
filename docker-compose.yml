@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  rust:
+    build:
+      context: .
+      dockerfile: ./containers/rust/Dockerfile
+    container_name: rust
+    depends_on:
+      - mysql
+    volumes:
+      - .:/app
+    tty: true
+
+  mysql:
+    image: mysql:8.0.26
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    volumes:
+      - ./containers/mysql/conf.d:/etc/mysql/conf.d
+      - mysql:/var/lib/mysql
+
+volumes:
+  mysql:
+    name: diesel-mysql-data
+    driver: local

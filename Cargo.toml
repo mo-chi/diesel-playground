@@ -1,0 +1,9 @@
+[package]
+name = "diesel-playground"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+diesel = { version = "1.4.7", features = ["mysql", "chrono"] }
+chrono = "0.4.19"
+dotenv = "0.15.0"
